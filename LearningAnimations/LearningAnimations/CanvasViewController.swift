@@ -9,10 +9,27 @@
 import UIKit
 
 class CanvasViewController: UIViewController {
+    
+    @IBOutlet weak var trayView: UIView!
+    
+    var trayOriginalCenter: CGPoint!
+    
+    @IBAction func onTrayPanGesture(panGestureRecognizer: UITapGestureRecognizer) {
+        var point = panGestureRecognizer.locationInView(view)
+//        var velocity = panGestureRecognizer.velocityInView(view)
+        
+        if panGestureRecognizer.state == UIGestureRecognizerState.Began {
+            trayOriginalCenter = trayView.center
+            print("Gesture began at: \(point)")
+        } else if panGestureRecognizer.state == UIGestureRecognizerState.Changed {
+            trayView.center = CGPoint(x: trayOriginalCenter.x, y: point.y)
+        } else if panGestureRecognizer.state == UIGestureRecognizerState.Ended {
+            print("Gesture ended at: \(point)")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
