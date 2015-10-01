@@ -12,6 +12,7 @@
 		0A2C594E1BBDF59E007EC566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C594C1BBDF59E007EC566 /* Main.storyboard */; };
 		0A2C59501BBDF59E007EC566 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C594F1BBDF59E007EC566 /* Assets.xcassets */; };
 		0A2C59531BBDF59E007EC566 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C59511BBDF59E007EC566 /* LaunchScreen.storyboard */; };
+		0A2C595C1BBDF799007EC566 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C595B1BBDF799007EC566 /* CanvasViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		0A2C594F1BBDF59E007EC566 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A2C59521BBDF59E007EC566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A2C59541BBDF59E007EC566 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A2C595B1BBDF799007EC566 /* CanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		0A2C59471BBDF59E007EC566 /* LearningAnimations */ = {
 			isa = PBXGroup;
 			children = (
+				0A2C595A1BBDF784007EC566 /* ViewControllers */,
 				0A2C59481BBDF59E007EC566 /* AppDelegate.swift */,
 				0A2C594A1BBDF59E007EC566 /* ViewController.swift */,
 				0A2C594C1BBDF59E007EC566 /* Main.storyboard */,
@@ -62,6 +65,14 @@
 				0A2C59541BBDF59E007EC566 /* Info.plist */,
 			);
 			path = LearningAnimations;
+			sourceTree = "<group>";
+		};
+		0A2C595A1BBDF784007EC566 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0A2C595B1BBDF799007EC566 /* CanvasViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A2C594B1BBDF59E007EC566 /* ViewController.swift in Sources */,
+				0A2C595C1BBDF799007EC566 /* CanvasViewController.swift in Sources */,
 				0A2C59491BBDF59E007EC566 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
