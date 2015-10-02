@@ -11,13 +11,35 @@ import UIKit
 class CanvasViewController: UIViewController {
     
     @IBOutlet weak var trayView: UIView!
+    var newlyCreatedFace: UIImageView!
     
     var trayOriginalCenter: CGPoint!
+    var newFaceOriginalCenter: CGPoint!
     var isTrayUp: Bool = true
     
-    @IBAction func onTrayPanGesture(panGestureRecognizer: UIPanGestureRecognizer) {
-//        let point = panGestureRecognizer.locationInView(view)
+    @IBAction func onSmilyFacePanGesture(sender: UIPanGestureRecognizer) {
+        let point = sender.locationInView(view)
+//        var velocity = sender.velocityInView(view)
+        let imageView = sender.view as! UIImageView
         
+        if sender.state == UIGestureRecognizerState.Began {
+            print("Gesture began at: \(point)")
+            newlyCreatedFace = UIImageView(image: imageView.image)
+            newlyCreatedFace.center = imageView.center
+//            newlyCreatedFace.center.y += trayView.frame.origin.y
+            view.addSubview(newlyCreatedFace)
+//            newFaceOriginalCenter = imageView.center
+        } else if sender.state == UIGestureRecognizerState.Changed {
+            newFaceOriginalCenter = CGPoint(x: point.x, y: point.y)
+            newlyCreatedFace.center = newFaceOriginalCenter
+            print("Gesture changed at: \(point)")
+        } else if sender.state == UIGestureRecognizerState.Ended {
+            newlyCreatedFace.center = newFaceOriginalCenter
+            print("Gesture ended at: \(point)")
+        }
+    }
+    
+    @IBAction func onTrayPanGesture(panGestureRecognizer: UIPanGestureRecognizer) {
         let velocity = panGestureRecognizer.velocityInView(view)
         if self.isTrayUp{
             if velocity.y > 0{
