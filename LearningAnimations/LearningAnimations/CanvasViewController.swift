@@ -17,18 +17,26 @@ class CanvasViewController: UIViewController {
     
     @IBAction func onTrayPanGesture(panGestureRecognizer: UIPanGestureRecognizer) {
 //        let point = panGestureRecognizer.locationInView(view)
+        
         let velocity = panGestureRecognizer.velocityInView(view)
         if self.isTrayUp{
             if velocity.y > 0{
                 if panGestureRecognizer.state == UIGestureRecognizerState.Ended {
-                    trayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + 150)
+                    
+                    UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: { () -> Void in
+                        self.trayView.center = CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y + 150)
+                        }, completion:nil)
+                    
                     self.isTrayUp = false
                 }
             }
         } else{
             if velocity.y < 0{
                 if panGestureRecognizer.state == UIGestureRecognizerState.Ended {
-                    trayView.center = trayOriginalCenter
+                    
+                    UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: [], animations: { () -> Void in
+                        self.trayView.center = self.trayOriginalCenter
+                        }, completion:nil)
                     self.isTrayUp = true
                 }
                 
