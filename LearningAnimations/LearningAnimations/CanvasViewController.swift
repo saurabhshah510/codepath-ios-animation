@@ -13,23 +13,44 @@ class CanvasViewController: UIViewController {
     @IBOutlet weak var trayView: UIView!
     
     var trayOriginalCenter: CGPoint!
+    var isTrayUp: Bool = true
     
-    @IBAction func onTrayPanGesture(panGestureRecognizer: UITapGestureRecognizer) {
-        var point = panGestureRecognizer.locationInView(view)
-//        var velocity = panGestureRecognizer.velocityInView(view)
-        
-        if panGestureRecognizer.state == UIGestureRecognizerState.Began {
-            trayOriginalCenter = trayView.center
-            print("Gesture began at: \(point)")
-        } else if panGestureRecognizer.state == UIGestureRecognizerState.Changed {
-            trayView.center = CGPoint(x: trayOriginalCenter.x, y: point.y)
-        } else if panGestureRecognizer.state == UIGestureRecognizerState.Ended {
-            print("Gesture ended at: \(point)")
+    @IBAction func onTrayPanGesture(panGestureRecognizer: UIPanGestureRecognizer) {
+        let point = panGestureRecognizer.locationInView(view)
+        let velocity = panGestureRecognizer.velocityInView(view)
+        if self.isTrayUp{
+            if velocity.y > 0{
+                if panGestureRecognizer.state == UIGestureRecognizerState.Began {
+                    trayOriginalCenter = trayView.center
+                    print("Gesture began at: \(point)")
+                } else if panGestureRecognizer.state == UIGestureRecognizerState.Changed {
+                    trayView.center = CGPoint(x: trayOriginalCenter.x, y: point.y)
+                } else if panGestureRecognizer.state == UIGestureRecognizerState.Ended {
+                    trayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + 150)
+                    self.isTrayUp = false
+                }
+            }
+        } else{
+            if velocity.y < 0{
+                if panGestureRecognizer.state == UIGestureRecognizerState.Began {
+                    trayOriginalCenter = trayView.center
+                    print("Gesture began at: \(point)")
+                } else if panGestureRecognizer.state == UIGestureRecognizerState.Changed {
+                    trayView.center = CGPoint(x: trayOriginalCenter.x, y: point.y)
+                } else if panGestureRecognizer.state == UIGestureRecognizerState.Ended {
+                    trayView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y - 150)
+                    self.isTrayUp = true
+                    
+                }
+                
+            }
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.isTrayUp = true
+        trayOriginalCenter = trayView.center
         // Do any additional setup after loading the view.
     }
 
